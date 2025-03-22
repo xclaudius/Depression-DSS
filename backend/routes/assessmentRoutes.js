@@ -1,22 +1,18 @@
-const express = require("express");
-const assessSymptoms = require("../controllers/assessmentController.js");
-const authMiddleware = require("../middleware/authMiddleware.js");
-const db = require("../config/db.js");
-
+// routes/assessmentRoutes.js
+const express = require('express');
 const router = express.Router();
+const assessmentController = require('../controllers/assessmentController');
 
-router.get("/history", authMiddleware, async (req, res) => {
-    try {
-      const userId = req.user.id;
-      const [rows] = await db.execute("SELECT * FROM assessments WHERE user_id = ? ORDER BY created_at DESC", [userId]);
-      res.status(200).json(rows);
-    } catch (error) {
-      console.error("Error fetching assessment history:", error);
-      res.status(500).json({ message: "Internal server error" });
-    }
-  });
+// Route for symptom assessment
+router.post('/', assessmentController.assessSymptoms);
 
-// Assess symptoms
-router.post("/", assessSymptoms);
+// Route for fetching assessment history
+router.get('/history', assessmentController.getAssessmentHistory);
+
+// ✅ Route to insert questions into the database
+router.post("/insert-questions", assessmentController.insertQuestions);
+
+// ✅ Route to fetch 10 random questions dynamically
+router.get("/questions", assessmentController.getRandomQuestions);
 
 module.exports = router;

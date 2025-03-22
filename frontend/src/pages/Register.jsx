@@ -11,11 +11,10 @@ export default function Register() {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/api/auth/register", 
-        { name, email, password },
-        { withCredentials: true } // Ensure cookies are included in requests
+        { name, email, password }, // Ensure cookies are included in requests
       );
   
-      window.location.href = "/"; // Redirect on successful registration
+      window.location.href = "/login"; // Redirect on successful registration
     } catch (error) {
       console.error("Error registering:", error);
       alert("Registration failed. Please try again.");

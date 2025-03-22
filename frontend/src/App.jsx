@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Dashboard from "./components/Dashboard";
+import Resources from "./components/Resources";
 
 const App = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ const App = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/resources" element={<Resources />} />
     </>
   )
 );

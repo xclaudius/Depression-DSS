@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
 const assessmentRoutes = require("./routes/assessmentRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
+const mlService = require('./services/mlService');
 
 const app = express();
 
